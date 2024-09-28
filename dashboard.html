@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Casheroid | Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="winitialdth=device-width, i-scale=1">
+    <link rel="icon" type="image/x-icon" href="static/img/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0396c1d9da.js" crossorigin="anonymous"></script>
+</head>
+
+<body style="height:100vh" data-bs-theme="dark">
+
+    <nav class="navbar navbar-expand-sm bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="static/img/logo.png" alt="Casheroid" style="width:100px; height: 50px;"
+                    class="rounded-pill">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            Home 
+                            <i class="fa-solid fa-house-chimney"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            About Us 
+                            <i class="fa-solid fa-address-card"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Support/Help 
+                            <i class="fa-regular fa-circle-question"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Terms & Conditions 
+                            <i class="fa-solid fa-fan"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="#">
+                            Privacy Policy 
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">
+                            Logout 
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-sm-1 bg-primary text-light" style="height: 100vh;">
+            <nav class="navbar my-5">
+                <div class="container-fluid">
+                  <ul class="navbar-nav p-3">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#">
+                        <h3><i class="fa-solid fa-gauge"></i></h3>
+                      </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <a class="nav-link" href="#">
+                            <h3><i class="fa-solid fa-cannabis"></i></h3>
+                          </a>
+                      </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <h3><i class="fa-solid fa-rectangle-ad"></i></h3>
+                      </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                          <h3><i class="fa-solid fa-blog"></i></h3>
+                        </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="#">
+                          <h3><i class="fa-solid fa-arrows-spin"></i></h3>
+                        </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="#">
+                          <h3><i class="fa-solid fa-sack-dollar"></i></h3>
+                        </a>
+                    </li>
+                    <hr />
+                  </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="col-sm-11 p-3 bg-dark text-white">
+            <div class="card my-5 w-100">
+                <div class="card-body">
+                    <h1>Hi Twilight!</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-bottom">
+        <div class="container-fluid py-1">
+            <a class="navbar-brand ms-3" href="#">
+                <h6>
+                    &copy Casheroid 2024
+                </h6>
+            </a>
+            <a href="#" class="ms-auto text-light"><i class="fa-brands fa-facebook mx-2"></i></a>
+            <a href="#" class="text-light"><i class="fa-brands fa-instagram mx-2"></i></a>
+            <a href="#" class="text-light"><i class="fa-brands fa-x-twitter mx-2"></i></a>
+        </div>
+    </nav>
+
+</body>
+
+</html>
