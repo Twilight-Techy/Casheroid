@@ -1,0 +1,6 @@
+.text-instagram {
+    background: linear-gradient(to bottom left, purple, orange);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
