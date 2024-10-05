@@ -4,3 +4,21 @@
     -webkit-text-fill-color: transparent;
   }
   
+/* CSS for the spinning animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* The spin class will be added on click */
+.spin-animation {
+  animation: spin 1s infinite linear;
+}
+
+.text-golden {
+  color: #C29B0C !important;
+}
