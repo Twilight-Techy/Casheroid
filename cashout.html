@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Casheroid | Cashout</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="winitialdth=device-width, i-scale=1">
+    <link rel="icon" type="image/x-icon" href="static/img/icon.png">
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.10"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+        <script src="static/js/casheroid.js"></script>
+    <script src="https://kit.fontawesome.com/0396c1d9da.js" crossorigin="anonymous"></script>
+</head>
+
+<body style="height:100vh" data-bs-theme="dark">
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="static/img/casheroid.png" alt="Casheroid" style="width:200px;"
+                    class="rounded-pill">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            Home 
+                            <i class="fa-solid fa-house-chimney"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            About Us 
+                            <i class="fa-solid fa-address-card"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Support/Help 
+                            <i class="fa-regular fa-circle-question"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Terms & Conditions 
+                            <i class="fa-solid fa-fan"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            Privacy Policy 
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto me-3">
+                    <li class="nav-item">
+                        <div class="dropdown" data-bs-theme="dark">
+                            <button type="button" class="btn btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="#navDropDown">
+                                <i class="fa-solid fa-circle-user"></i>
+                            </button>
+                
+                            <ul class="dropdown-menu" id="navDropDown">
+                                <li>
+                                    <h5 class="dropdown-header">Account</h5>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="#">Notifications</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">
+                                        Logout
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button class="btn btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#sideBar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Bank Transfer Modal -->
+    <div class="modal mx-auto fade" id="bankTransferModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Cash Out - Bank Transfer</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <form action="{% url 'login' %}" method="POST">
+                            <div class="mb-3">
+                                <label for="amount">Amount:</label>
+                                <input type="text" class="form-control" id="amount" placeholder="Enter amount" name="amount">
+                            </div>
+                            <div class="mb-3">
+                                <label for="accountNumber">Account Number:</label>
+                                <input type="text" class="form-control" id="accountNumber" placeholder="Enter account number" name="accountNumber">
+                            </div>
+                            <div class="mb-3">
+                                <label for="bank">Bank:</label>
+                                <input type="text" class="form-control" id="bank" placeholder="Enter bank name"
+                                    name="bank">
+                            </div>
+                            <div class="text-center mb-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+    
+                <!-- Modal Footer -->
+                <div class="modal-footer justify-content-center">
+                    <p class="text-center">Haven't received your witdrawal yet? <a href="#" >Contact us</a></p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Wallet Modal -->
+    <div class="modal mx-auto fade" id="mobileWalletModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+    
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Cash Out - Mobile Wallet</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="container">
+                        <form action="{% url 'login' %}" method="POST">
+                            <div class="mb-3">
+                                <label for="walletID">Wallet ID:</label>
+                                <input type="text" class="form-control" id="walletID" placeholder="Enter wallet ID e.g phone number" name="walletID">
+                            </div>
+                            <div class="mb-3">
+                                <label for="walletName">Mobile Wallet:</label>
+                                <input type="text" class="form-control" id="walletName" placeholder="Enter mobile wallet" name="walletName">
+                            </div>
+                            <div class="text-center mb-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+    
+                <!-- Modal Footer -->
+                <div class="modal-footer justify-content-center">
+                    <p class="text-center">Haven't received your witdrawal yet? <a href="#" >Contact us</a></p>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+    <div class="offcanvas offcanvas-start" id="sideBar">
+        <div class="offcanvas-header bg-primary text-light">
+            <div class=" flex-column w-100">
+                <div class="d-flex  w-100">
+                    <h3 class="offcanvas-title">Casheroid</h3>
+                    <button type="button" class="btn-close text-reset ms-auto" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <p class="offcanvas-title small">Your pathway to financial freedom!</p>
+            </div>
+        </div>
+        <div class="offcanvas-body">
+            <nav class="navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item my-3">
+                        <a class="nav-link active" href="#" data-bs-toggle="tooltip" data-bs-placement="right"
+                            title="Dashboard">
+                            <h5>Dashboard <i class="fa-solid fa-gauge"></i></h5>
+                        </a>
+                    </li>
+                    <li class="nav-item my-3">  <a class="nav-link" href="#"  data-bs-toggle="tooltip" data-bs-placement="right" title="Invite Friends">
+                            <h5>Invite Friends <i class="fa-solid fa-cannabis"></i></h5>
+                      </a>
+                    </li>
+                    <li class="nav-item my-3">
+                      <a class="nav-link" href="#"  data-bs-toggle="tooltip" data-bs-placement="right" title="Click Ads">
+                        <h5>Click Ads <i class="fa-solid fa-rectangle-ad"></i></h5>
+                      </a>
+                    </li>
+                    <li class="nav-item my-3">
+                        <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Sponsored Tasks">
+                          <h5>Sponsored Tasks <i class="fa-solid fa-list-check"></i></h5>
+                        </a>
+                    </li>
+                    <li class="nav-item my-3"></li>
+                        <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Spin and Win">
+                          <h5>Spin and Win <i class="fa-solid fa-arrows-spin"></i></h5>
+                        </a>
+                    </li>
+                    <li class="nav-item my-3"></li>
+                        <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Cashout">
+                          <h5>Cashout <i class="fa-solid fa-sack-dollar"></i></h5>
+                        </a>
+                    </li>
+                  </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1 bg-primary sticky-top pt-5" style="height: 100vh;">
+            <nav class="navbar mt-3 mb-5" data-bs-theme="dark">
+                <div class="container-fluid">
+                  <ul class="navbar-nav p-3">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard">
+                        <h3><i class="fa-solid fa-gauge"></i></h3>
+                      </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"  data-bs-toggle="tooltip" data-bs-placement="right" title="Invite Friends">
+                            <h3><i class="fa-solid fa-cannabis"></i></h3>
+                      </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item">
+                      <a class="nav-link" href="#"  data-bs-toggle="tooltip" data-bs-placement="right" title="Click Ads">
+                        <h3><i class="fa-solid fa-rectangle-ad"></i></h3>
+                      </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Sponsored Tasks">
+                          <h3><i class="fa-solid fa-list-check"></i></h3>
+                        </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Spin and Win">
+                          <h3><i class="fa-solid fa-arrows-spin"></i></h3>
+                        </a>
+                    </li>
+                    <hr />
+                    <li class="nav-item"></li>
+                        <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="Cashout">
+                          <h3><i class="fa-solid fa-sack-dollar"></i></h3>
+                        </a>
+                    </li>
+                    <hr />
+                  </ul>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="col-sm-11 py-5">
+            <div class="container-fluid bg-primary text-light pt-5 pb-3 text-center">
+                <h1><strong>Cashout</strong></h1>
+            </div>
+            <div class="container-fluid">                                  
+                <div class="row justify-content-center">                   
+                    <div class="col-sm-10">
+                        <h2 class="my-5 text-primary"><strong>Hi, Twilight!</strong></h2>
+                    </div>
+                    <div class="col-sm-10 mb-3">
+                        <div class="card bg-primary text-light">
+                            <div class="card-body">
+                                <h5 class="card-title">Account Balance:</h5>
+                                <hr />
+                                <h4 class="card-text my-3"><strong>&#8358 2000</strong></h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-10 my-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 class="card-title py-2">How to Cash Out your Earnings!</h6>
+                            </div>
+                            <div class="card-body">
+                                <ol class="card-text">
+                                    <li>
+                                        <h6>Check Your Balance</h6>
+                                        <ul class="my-3">
+                                            <li>At the top of the page, you’ll see your current available balance. Make sure you have enough funds to cash out. The minimum withdrawal amount is ₦1000.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h6>Enter the Amount to Cash Out</h6>
+                                        <ul class="my-3">
+                                            <li>In the "Amount" field, type the exact amount you want to withdraw. Ensure it's within your available balance and meets the minimum withdrawal requirement.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h6>Select a Payment Method</h6>
+                                        <ul class="my-3">
+                                            <li>Choose how you would like to receive your funds:</li>
+                                                <ul>
+                                                    <li><b>Bank Transfer:</b> Provide your bank account details.</li>
+                                                    <li><b>Mobile Wallet:</b> Enter your mobile number or email associated with your wallet (e.g., Paystack or Flutterwave).</li>
+                                                </ul>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h6>Fill in Your Payment Details</h6>
+                                        <ul class="my-3">
+                                            <li>Depending on the payment method you selected, enter the required details such as:</li>
+                                            <ul>
+                                                <li><b>For Bank Transfer:</b> Account Number and Bank Name.</li>
+                                                <li><b>For Mobile Wallet:</b> Mobile Number or Email for your wallet.</li>
+                                            </ul>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h6>Submit Your Cashout Request</h6>
+                                        <ul class="my-3">
+                                            <li>After filling in the form, click the <b>"Cash Out Now"</b> button to submit your request.</li>
+                                            <li>You’ll see a confirmation page summarizing your cashout details. Review the information carefully and click <b>"Confirm Cashout"</b> to proceed.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h6>Wait for Processing</h6>
+                                        <ul class="my-3">
+                                            <li>Once submitted, your request will be processed. Cashout requests are typically processed within 24 hours. You can check the status of your request in the Cashout History section.</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <h6>Check Your Cashout History</h6>
+                                        <ul class="my-3">
+                                            <li>Track your previous cashout requests under the "Cashout History" section to view the status of each request, including completed and pending transactions.</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 my-3">
+                        <a href="#bankTransferModal" data-bs-toggle="modal" style="text-decoration: none;">
+                            <div class="card bg-primary text-light border border-3 border-light">
+                                <div class="card-body">
+                                    <h5 class="card-title py-2">
+                                        <i class="fa-solid fa-money-bill-transfer me-3"></i>
+                                        Bank Transfer
+                                        <i class="fa-solid fa-arrow-right float-end me-2"></i>
+                                    </h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-5 my-3">
+                        <a href="#mobileWalletModal" data-bs-toggle="modal" style="text-decoration: none;">
+                            <div class="card bg-primary text-light border border-3 border-light">
+                                <div class="card-body">
+                                    <h5 class="card-title py-2">
+                                        <i class="fa-solid fa-wallet me-3"></i>
+                                        Mobile Wallet
+                                        <i class="fa-solid fa-arrow-right float-end me-2"></i>
+                                    </h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-10 my-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 class="card-title py-2">Transaction History</h6>
+                            </div>
+                            <div class="card-body w-100">
+                                <!-- <ul class="card-text">
+                                    <li class="my-3 list-inline">
+                                        <h5 class="list-inline-item">You withdrew ₦50</h5>
+                                        <p class="small text-end align-self me-3 list-inline-item float-end">12/12/25 - 07:55p.m.</p>
+                                    </li>
+                                    <li class="my-3 list-inline">
+                                        <h5 class="list-inline-item">You withdrew ₦50</h5>
+                                        <p class="small text-end align-self me-3 list-inline-item float-end">12/12/25 - 07:55p.m.</p>
+                                    </li>
+                                </ul> -->
+                                <table class="table table-striped table-hover">
+                                    <thead class="h5">
+                                        <tr>
+                                            <th>Action</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>You withdrew ₦50</td>
+                                            <td>12/12/25</td>
+                                            <td>07:55p.m.</td>
+                                            <td>Pending</td>
+                                        </tr>
+                                        <tr>
+                                            <td>You withdrew ₦50</td>
+                                            <td>12/12/25</td>
+                                            <td>07:55p.m.</td>
+                                            <td>Pending</td>
+                                        </tr>
+                                        <tr>
+                                            <td>You withdrew ₦50</td>
+                                            <td>12/12/25</td>
+                                            <td>07:55p.m.</td>
+                                            <td>Pending</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <div class="container-fluid py-1">
+            <a class="navbar-brand ms-3" href="#">
+                <h6>
+                    &copy Casheroid 2024
+                </h6>
+            </a>
+            <a href="#" class="ms-auto text-light"><i class="fa-brands fa-facebook mx-2"></i></a>
+            <a href="#" class="text-light"><i class="fa-brands fa-instagram mx-2"></i></a>
+            <a href="#" class="text-light"><i class="fa-brands fa-x-twitter mx-2"></i></a>
+        </div>
+    </nav>
+
+    <!-- <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script> -->
+
+</body>
+
+</html>
